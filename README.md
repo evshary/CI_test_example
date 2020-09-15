@@ -7,3 +7,4 @@ This repo show the simple example of how to use [travis-ci.org](https://travis-c
 # Reference
 
 * [travis: Building a C project](https://docs.travis-ci.com/user/languages/c/)
+* [codecov: Supported Languages](https://docs.codecov.io/docs/supported-languages)
