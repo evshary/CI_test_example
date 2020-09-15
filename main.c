@@ -2,7 +2,7 @@
 
 int func()
 {
-    printf("func\n");
+    printf("Now is at %s\n", __func__);
 }
 
 int main()
