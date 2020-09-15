@@ -3,4 +3,5 @@ os: linux
 dist: bionic
 compiler: gcc
 script:
+    make clean
     make
