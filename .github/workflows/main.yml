@@ -23,16 +23,28 @@ jobs:
           echo ::set-output name=SOURCE_NAME::${GITHUB_REF#refs/*/}
           echo ::set-output name=SOURCE_BRANCH::${GITHUB_REF#refs/heads/}
           echo ::set-output name=SOURCE_TAG::${GITHUB_REF#refs/tags/}
+          # version format: <major>.<minor>.<patch>
+          # For example: 1.0.0
+          tag_arr=(`echo ${GITHUB_REF#refs/tags/} | tr '.' ' '`)
+          echo ::set-output name=MAJOR_VERS::${tag_arr[0]}
+          echo ::set-output name=MINOR_VERS::${tag_arr[1]}
+          echo ::set-output name=PATCH_VERS::${tag_arr[2]}
       - name: Build
         run: |
           echo $SOURCE_NAME
           echo $SOURCE_BRANCH
           echo $SOURCE_TAG
+          echo $MAJOR_VERS
+          echo $MINOR_VERS
+          echo $PATCH_VERS
           make
         env:
           SOURCE_NAME: ${{ steps.branch_name.outputs.SOURCE_NAME }}
           SOURCE_BRANCH: ${{ steps.branch_name.outputs.SOURCE_BRANCH }}
           SOURCE_TAG: ${{ steps.branch_name.outputs.SOURCE_TAG }}
+          MAJOR_VERS: ${{ steps.branch_name.outputs.MAJOR_VERS }}
+          MINOR_VERS: ${{ steps.branch_name.outputs.MINOR_VERS }}
+          PATCH_VERS: ${{ steps.branch_name.outputs.PATCH_VERS }}
       # While there's tag, it'll put to GitHub Release
       - name: Put artifact to GitHub Release
         uses: softprops/action-gh-release@v1
