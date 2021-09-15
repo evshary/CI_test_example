@@ -31,3 +31,5 @@ after_success:
 
 Add your GitHub action script to `.github/workflows/main.yml`
 
+* If you want to use password in GitHub, GitHub Secrets is a good choice.
+  - https://docs.github.com/en/actions/reference/encrypted-secrets
